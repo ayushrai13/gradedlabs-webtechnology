@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Scrolling Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #555;
+        }
+        .container {
+            padding-top: 50px; /* Adjust based on navbar height */
+        }
+        section {
+            padding: 20px;
+            margin: 20px 0;
+        }
+        section:nth-of-type(even) {
+            background: #f4f4f4;
+        }
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+            <li><a href="#section3">Section 3</a></li>
+            <li><a href="#section4">Section 4</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="section1">
+            <h2>Section 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula quis velit volutpat auctor. Phasellus euismod, lacus nec vestibulum tristique, quam lorem euismod felis, nec elementum libero nisi et dui.</p>
+        </section>
+
+        <section id="section2">
+            <h2>Section 2</h2>
+            <p>Suspendisse potenti. Nulla facilisi. Nam convallis, est eget feugiat vehicula, dolor eros fermentum arcu, at aliquam orci felis vel est. Praesent in malesuada nisi.</p>
+        </section>
+
+        <section id="section3">
+            <h2>Section 3</h2>
+            <p>Morbi ullamcorper massa non velit tincidunt, eu aliquet turpis placerat. Aenean eu odio vitae justo pretium tincidunt. Sed aliquet felis vitae est blandit, nec posuere ligula facilisis.</p>
+        </section>
+
+        <section id="section4">
+            <h2>Section 4</h2>
+            <p>Integer nec dolor vehicula, fermentum libero in, cursus urna. Duis tincidunt ante a justo viverra, id consequat elit aliquet. Vivamus ultrices nisi eu urna blandit, a volutpat lectus fermentum.</p>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript for smooth scrolling
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('nav a');
+
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    const targetId = this.getAttribute('href').substring(1); // Get section id
+                    const targetElement = document.getElementById(targetId);
+
+                    // Smooth scrolling to the section
+                    window.scrollTo({
+                        top: targetElement.offsetTop - document.querySelector('nav').offsetHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
